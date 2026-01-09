@@ -17,7 +17,7 @@ from pathlib import Path
 # PAGE CONFIG
 # ========================================
 st.set_page_config(
-    page_title="Dashboard RUP 2025 - Complete",
+    page_title="Student Performance Factors - Complete",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -50,7 +50,7 @@ st.markdown("""
 def load_data():
     """Load RUP data with caching"""
     project_root = Path(__file__).resolve().parent.parent.parent.parent
-    data_path = project_root / 'datasets' / 'rup' / 'RUP-PaketPenyedia-Terumumkan-2025.parquet'
+    data_path = project_root / 'datasets' / 'StudentPerformanceFactors.csv'
 
     if not data_path.exists():
         st.error(f"Dataset not found at {data_path}")

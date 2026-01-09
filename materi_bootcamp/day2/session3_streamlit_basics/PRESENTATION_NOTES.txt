@@ -1,0 +1,561 @@
+# 📊 SCRIPT PRESENTASI - NOTES DAN OUTLINE
+## Student Performance Analytics Dashboard
+
+---
+
+## 🎬 PEMBUKAAN (1 menit)
+
+**Greeting:**
+"Halo semua! Hari ini saya akan menunjukkan dan menjelaskan aplikasi Streamlit yang telah saya buat untuk menganalisis data performa siswa. Aplikasi ini adalah hasil dari pembelajaran Session 3 tentang Streamlit Basics."
+
+**Overview:**
+"Aplikasi ini bukan hanya untuk display data, tapi juga untuk mengajarkan bagaimana membangun dashboard yang interaktif, informatif, dan user-friendly menggunakan Streamlit."
+
+---
+
+## 📄 SECTION 1: HEADER (1 menit)
+
+**Poin Utama:**
+- Header adalah entry point pertama user
+- Memberikan konteks apa aplikasi ini
+- Tips untuk user agar tahu cara menggunakannya
+
+**Komponen:**
+1. **Title** - 🎓 Student Performance Analytics Dashboard
+   - Besar dan bold
+   - Emoji untuk visual appeal
+   
+2. **Description** - Penjelasan singkat aplikasi
+   - User langsung tahu ini tentang apa
+   
+3. **Info Box** - Tips penggunaan
+   - User diberi hint untuk pakai sidebar
+   - Helpful dan friendly
+
+**Key Learning:**
+- `st.title()` untuk main heading
+- `st.markdown()` untuk custom text
+- `st.info()` untuk informative messages
+- `st.markdown("---")` untuk visual separator
+
+---
+
+## 🎛️ SECTION 2: SIDEBAR (2 menit)
+
+**Poin Utama:**
+- Sidebar adalah control center dari aplikasi
+- Mengorganisir widget dalam 3 tabs untuk clarity
+- Real-time filtering
+
+**3 Tabs Breakdown:**
+
+### Tab 1: Filter
+```
+MultiSelect Features
+├─ User pilih 2+ features untuk analisis
+├─ Features yang dipilih di-pass ke visualisasi
+└─ Min 2 features untuk scatter plot
+
+Range Slider
+├─ Dynamic range dari min-max data
+├─ Slider untuk select range value
+└─ Data di-filter based on range
+
+Checkbox Options
+├─ Show Statistics Detail
+├─ Highlight Outliers
+└─ Show Correlation Matrix
+```
+
+### Tab 2: Visualization
+```
+Radio Button untuk Chart Type
+├─ Distribution (Histogram)
+├─ Scatter Plot
+├─ Box Plot
+└─ Bar Chart
+
+Selectbox untuk Color By
+└─ Customize color berdasarkan kategori
+```
+
+### Tab 3: About
+```
+Dataset Information
+├─ Total Records
+├─ Total Features
+└─ Numeric Features Count
+```
+
+**Key Learning:**
+- `st.sidebar` untuk akses sidebar
+- `st.tabs()` untuk tab navigation
+- `st.multiselect()` untuk multiple selection
+- `st.slider()` untuk range input
+- `st.checkbox()` untuk toggle
+- `st.radio()` untuk single choice
+- `st.selectbox()` untuk dropdown
+
+**User Interaction Pattern:**
+1. User ubah filter di sidebar
+2. Data ter-filter secara otomatis
+3. Semua chart dan metric ter-update
+4. Seamless dan responsive
+
+---
+
+## 📊 SECTION 3: METRICS (1 menit)
+
+**Poin Utama:**
+- 4 key metrics dalam layout horizontal
+- Real-time update based on filtered data
+- Quick overview dari filtered dataset
+
+**4 Metrics:**
+1. **Rata-rata [Feature 1]**
+   - Calculated: `filtered_df[numeric_cols[0]].mean()`
+   - Delta: difference from original data
+   
+2. **Maksimum [Feature 2]**
+   - Calculated: `filtered_df[numeric_cols[1]].max()`
+   
+3. **Minimum [Feature 3]**
+   - Calculated: `filtered_df[numeric_cols[2]].min()`
+   
+4. **Total Records**
+   - Calculated: `len(filtered_df)`
+   - Delta: comparison with original `len(df)`
+
+**Key Learning:**
+- `st.columns()` untuk layout horizontal
+- `st.metric()` untuk display KPI
+- Delta untuk show change
+- Real-time calculation saat filter berubah
+
+**Visual Benefit:**
+- Eye-catching dengan 4 columns
+- Quick glance dari key stats
+- Shows impact dari filtering
+
+---
+
+## 📚 SECTION 4: VISUALIZATION GUIDE (1.5 menit)
+
+**Poin Utama:**
+- Educational content yang penting
+- Mencegah user misinterpretasi chart
+- Self-explanatory dashboard
+
+**4 Chart Types Explained:**
+
+### 📊 Histogram
+- **Apa:** Distribusi frekuensi satu variabel
+- **Cara baca:** Bar tinggi = banyak data, bar rendah = sedikit
+- **Pola:** Normal, skewed, bimodal
+- **Gunakan untuk:** Deteksi outlier, pola distribusi
+
+### 📍 Scatter Plot
+- **Apa:** Relasi antara 2 variabel
+- **Cara baca:** Titik rapat = korelasi kuat, tersebar = lemah
+- **Trendline:** Garis merah = arah hubungan
+- **Korelasi:** -1 (negatif) hingga +1 (positif)
+
+### 📦 Box Plot
+- **Komponen:** Q1, Median, Q3, Whisker, Outlier
+- **Interpretasi:** Box = 50% data tengah, whisker = normal range
+- **Gunakan untuk:** Deteksi outlier, perbandingan grup
+
+### 🔥 Heatmap
+- **Skala:** Hijau (positif) hingga Merah (negatif)
+- **Interpretasi:** Warna gelap = korelasi kuat
+- **Penting:** Korelasi ≠ Kausalitas
+
+**Key Learning:**
+- `st.expander()` untuk expandable sections
+- Educational content integrated dalam dashboard
+- Clear explanations prevent misinterpretation
+
+---
+
+## 📈 SECTION 5: CHARTS (2 menit)
+
+**Poin Utama:**
+- 4 visualisasi interaktif dalam layout 2×2
+- Setiap chart dengan expandable explanation
+- Plotly untuk interactivity (hover, zoom, download)
+
+**Layout:**
+```
+Row 1:
+├─ Histogram (left)
+└─ Scatter Plot (right)
+
+Row 2:
+├─ Bar Chart (left)
+└─ Heatmap Correlation (right)
+```
+
+**Setiap Chart Include:**
+1. **Visualization** - `st.plotly_chart()`
+2. **Expandable Explanation** - `st.expander()`
+3. **Relevant Statistics** - Mean, median, std dev
+4. **Interpretation Guide** - Apa artinya hasil
+5. **Context** - Kapan gunakan, why matters
+
+**Plotly Advantages:**
+- Interactive (hover untuk values)
+- Zoom dan pan
+- Download as PNG
+- Responsive design
+
+**Key Learning:**
+- `px.histogram()` untuk histogram
+- `px.scatter()` dengan trendline
+- `px.bar()` dengan error bars
+- `go.Heatmap()` untuk correlation
+- `st.plotly_chart()` untuk display
+- Expandable explanations = educational + space-efficient
+
+---
+
+## 📦 SECTION 6: CONTAINERS & STATS (1 menit)
+
+**Poin Utama:**
+- Organized layout untuk statistik
+- Progressive disclosure dengan expanders
+- Prevent information overload
+
+**2 Parts:**
+
+### Part 1: Container dengan 2 Columns
+**Column 1: Statistik Deskriptif**
+- `filtered_df[numeric_cols].describe()`
+- Mean, median, std dev, min, max, quartiles
+
+**Column 2: Data Type Summary**
+- Count per data type
+- Object, Float, Integer, etc
+
+### Part 2: Insights Expander
+**Ukuran Pemusatan & Penyebaran:**
+- Mean, Median, Std Dev per feature
+- Detailed breakdown
+
+**Nilai Ekstrem:**
+- Min, Max, Range per feature
+
+**Key Learning:**
+- `st.container()` untuk logical grouping
+- `st.expander()` untuk progressive disclosure
+- `st.columns()` untuk side-by-side layout
+- DataFrame display dengan statistics
+
+---
+
+## 📋 SECTION 7: DATA TABLE (1 menit)
+
+**Poin Utama:**
+- Raw data viewing capability
+- User control over columns
+- Sortable dan scrollable
+
+**Components:**
+1. **Column Selector**
+   - `st.multiselect()` untuk pilih kolom
+   - Default 5 kolom pertama
+   
+2. **DataFrame Display**
+   - `st.dataframe()` untuk display
+   - Height 400px (scrollable)
+   - Auto pagination
+   
+3. **Data Info**
+   - Shape (rows, columns)
+   - Memory usage
+
+**Key Learning:**
+- `st.multiselect()` dengan column names
+- `st.dataframe()` dengan parameters
+- Responsive table design
+- Copy functionality built-in
+
+---
+
+## 🎯 SECTION 8: INTERACTIVE ACTIONS (1 menit)
+
+**Poin Utama:**
+- 3 buttons untuk user control
+- Different actions, different purposes
+- Emojis untuk visual clarity
+
+**Button 1: Reset Filters**
+```python
+if st.button("🔄 Reset All Filters", type="primary"):
+    st.rerun()
+```
+- Blue (primary type)
+- Reset state, refresh page
+- User bisa explore dari awal
+
+**Button 2: Show Summary**
+```python
+if st.button("📊 Show Data Summary"):
+    st.balloons()
+    st.success("Summary: ...")
+```
+- Animation untuk fun
+- Show quick summary
+- Motivational feedback
+
+**Button 3: Download CSV**
+```python
+st.download_button(
+    label="📥 Download CSV",
+    data=csv,
+    file_name="student_performance_filtered.csv",
+    mime="text/csv"
+)
+```
+- Export filtered data
+- Download sebagai CSV
+- For further analysis
+
+**Key Learning:**
+- `st.button()` untuk clickable action
+- `st.download_button()` untuk file download
+- `st.balloons()` untuk celebration
+- `st.rerun()` untuk refresh state
+
+---
+
+## ⏳ SECTION 9: STATUS INDICATORS (1 menit)
+
+**Poin Utama:**
+- Data quality awareness
+- User guidance melalui status
+- Conditional messages
+
+**2 Parts:**
+
+### Part 1: Data Completeness
+```python
+completeness = (1 - (filtered_df.isnull().sum().sum() / 
+                (filtered_df.shape[0] * filtered_df.shape[1]))) * 100
+st.progress(completeness / 100)
+```
+- Visual progress bar
+- Percentage display
+- Shows data quality
+
+### Part 2: Status Messages
+```
+IF no data:
+    st.error("No data matches filter")
+ELIF < 10 records:
+    st.warning("Very few records")
+ELIF < 50% of data:
+    st.info("Showing X records...")
+ELSE:
+    st.success("Showing X records")
+```
+
+**Colors Meaning:**
+- 🔴 Red (Error) - Problem
+- 🟡 Yellow (Warning) - Caution
+- 🔵 Blue (Info) - FYI
+- 🟢 Green (Success) - Good
+
+**Key Learning:**
+- `st.progress()` untuk visual indicator
+- Conditional message display
+- Status messages guide user
+- Color coding untuk clear communication
+
+---
+
+## 👣 SECTION 10: FOOTER (30 detik)
+
+**Poin Utama:**
+- Closing information
+- Credits dan attribution
+- Learned features summary
+- Next steps
+
+**Components:**
+1. **HTML Footer**
+   - Title & program info
+   - Session, day, dataset
+
+2. **Sidebar Learned Features**
+   - 13 item checklist
+   - Validation untuk user
+   - Progress tracking
+
+3. **Next Session Preview**
+   - Keep user engaged
+   - Clear learning path
+
+---
+
+## 🔄 FULL FLOW (2 menit)
+
+**User Journey:**
+```
+1. Open Application
+   ↓
+2. See Header (understand what this is)
+   ↓
+3. Use Sidebar to Filter Data
+   ├─ Multiselect features
+   ├─ Set range
+   └─ Toggle options
+   ↓
+4. See Real-time Updates
+   ├─ Metrics change
+   ├─ Charts update
+   └─ Everything refreshes
+   ↓
+5. Read Visualization Guide
+   └─ Understand each chart type
+   ↓
+6. Analyze Charts
+   ├─ See distribution
+   ├─ Check relationships
+   ├─ Compare values
+   └─ Look at correlations
+   ↓
+7. Review Statistics & Container
+   └─ Deeper insights
+   ↓
+8. View Raw Data
+   ├─ Select columns
+   └─ Inspect individual records
+   ↓
+9. Take Action
+   ├─ Reset to explore again
+   ├─ Show summary
+   └─ Download data
+   ↓
+10. Check Data Quality
+    ├─ Completeness %
+    └─ Status message
+    ↓
+11. End (Footer)
+    ├─ See what learned
+    └─ Know what's next
+```
+
+**Key Takeaways dari Full Flow:**
+- Seamless integration dari semua sections
+- Real-time responsiveness
+- User has full control
+- Educational + Functional
+- Professional appearance
+- Complete user journey
+
+---
+
+## 🎓 KESIMPULAN (1 menit)
+
+**Recap:**
+- 10 sections yang terintegrasi seamlessly
+- Setiap section punya purpose yang jelas
+- User-centric design
+- Educational value
+
+**What You Learned Today:**
+✅ How to structure Streamlit dashboard
+✅ Widget usage (multiselect, slider, checkbox, etc)
+✅ Layout design (columns, containers, expanders, tabs)
+✅ Visualization best practices
+✅ Interactivity patterns
+✅ Status communication
+✅ User guidance
+
+**Streamlit Best Practices Demonstrated:**
+✅ Sidebar for controls
+✅ Columns for layout
+✅ Caching for performance
+✅ Real-time updates
+✅ Clear labeling
+✅ Emoji for visual clarity
+✅ Expandable details
+✅ Status messages
+✅ Educational content
+✅ Professional styling
+
+---
+
+## 💬 Q&A (time permits)
+
+**Potential Questions:**
+1. "Bagaimana membuat dashboard yang lebih complex?"
+   - Lebih widgets, more visualizations, multi-page
+   
+2. "Bagaimana optimize performance?"
+   - @st.cache_data, reduce data, simplify charts
+   
+3. "Bagaimana deploy ke production?"
+   - Streamlit Cloud, Docker, AWS, Heroku
+   
+4. "Bagaimana handle large datasets?"
+   - Database integration, filtering, aggregation
+   
+5. "Bagaimana add more interactivity?"
+   - Callbacks, session state, dynamic elements
+
+---
+
+## 📚 RESOURCES
+
+**Files:**
+- `app_part1.py` - Main application (454 lines)
+- `DOKUMENTASI.md` - Comprehensive guide
+- `PENJELASAN_APLIKASI.py` - Interactive presentation
+- `SCRIPT_PRESENTASI.py` - This presentation slides
+- `README.md` - Quick reference
+
+**Links:**
+- [Streamlit Docs](https://docs.streamlit.io/)
+- [Plotly Python](https://plotly.com/python/)
+- [Pandas Docs](https://pandas.pydata.org/docs/)
+
+**Time Breakdown:**
+- Intro: 1 menit
+- Section 1-10: 11 menit
+- Full Flow: 2 menit
+- Conclusion: 1 menit
+- Q&A: 5 menit
+- **Total: ~20 menit**
+
+---
+
+## 🎬 PRESENTASI TIPS
+
+1. **Start dengan live demo**
+   - Show aplikasi running di browser
+   - Change filters secara real-time
+   
+2. **Go section by section**
+   - Gunakan SCRIPT_PRESENTASI.py
+   - Show setiap bagian halaman
+   - Explain code dan functionality
+   
+3. **Interactive engagement**
+   - Ask audience questions
+   - Let mereka coba interact
+   - Encourage exploration
+   
+4. **Highlight key takeaways**
+   - Best practices
+   - Design patterns
+   - Learning outcomes
+   
+5. **End with encouragement**
+   - This is foundation
+   - Can build more complex dashboards
+   - Keep learning!
+
+---
+
+**Selamat Presentasi!** 🚀
